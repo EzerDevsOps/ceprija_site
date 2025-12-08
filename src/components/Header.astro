@@ -1,0 +1,156 @@
+---
+
+---
+
+<header class="bg-white shadow-sm sticky top-0 z-50">
+  <nav class="container mx-auto px-6 py-4">
+    <div class="flex justify-between items-center">
+      <a
+        href="/"
+        class="text-2xl font-bold text-primary font-serif flex items-center gap-2"
+      >
+        <span
+          class="bg-primary text-white w-10 h-10 flex items-center justify-center rounded-full"
+          >C</span
+        >
+        CEPRIJA
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex gap-8 items-center">
+        <a
+          href="/"
+          class="text-gray-700 hover:text-primary font-medium transition-colors"
+          >Inicio</a
+        >
+        <a
+          href="/nosotros"
+          class="text-gray-700 hover:text-primary font-medium transition-colors"
+          >Nosotros</a
+        >
+        <a
+          href="/oferta-academica"
+          class="text-gray-700 hover:text-primary font-medium transition-colors"
+          >Oferta Académica</a
+        >
+        <a
+          href="/admisiones"
+          class="text-gray-700 hover:text-primary font-medium transition-colors"
+          >Admisiones</a
+        >
+        <a
+          href="/blog"
+          class="text-gray-700 hover:text-primary font-medium transition-colors"
+          >Blog</a
+        >
+        <a
+          href="/contacto"
+          class="bg-primary text-white px-5 py-2 rounded-lg hover:bg-blue-900 transition-colors font-medium"
+          >Contacto</a
+        >
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-button"
+        class="md:hidden text-gray-700 focus:outline-none"
+      >
+        <svg
+          id="menu-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg
+          id="close-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6 hidden"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+      <div class="flex flex-col space-y-3">
+        <a
+          href="/"
+          class="text-gray-700 hover:text-primary font-medium transition-colors py-2 px-4 rounded hover:bg-gray-50"
+          >Inicio</a
+        >
+        <a
+          href="/nosotros"
+          class="text-gray-700 hover:text-primary font-medium transition-colors py-2 px-4 rounded hover:bg-gray-50"
+          >Nosotros</a
+        >
+        <a
+          href="/oferta-academica"
+          class="text-gray-700 hover:text-primary font-medium transition-colors py-2 px-4 rounded hover:bg-gray-50"
+          >Oferta Académica</a
+        >
+        <a
+          href="/admisiones"
+          class="text-gray-700 hover:text-primary font-medium transition-colors py-2 px-4 rounded hover:bg-gray-50"
+          >Admisiones</a
+        >
+        <a
+          href="/blog"
+          class="text-gray-700 hover:text-primary font-medium transition-colors py-2 px-4 rounded hover:bg-gray-50"
+          >Blog</a
+        >
+        <a
+          href="/contacto"
+          class="bg-primary text-white px-5 py-2 rounded-lg hover:bg-blue-900 transition-colors font-medium text-center"
+          >Contacto</a
+        >
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuIcon = document.getElementById("menu-icon");
+  const closeIcon = document.getElementById("close-icon");
+
+  mobileMenuButton?.addEventListener("click", () => {
+    const isHidden = mobileMenu?.classList.contains("hidden");
+
+    if (isHidden) {
+      mobileMenu?.classList.remove("hidden");
+      menuIcon?.classList.add("hidden");
+      closeIcon?.classList.remove("hidden");
+    } else {
+      mobileMenu?.classList.add("hidden");
+      menuIcon?.classList.remove("hidden");
+      closeIcon?.classList.add("hidden");
+    }
+  });
+
+  // Close menu when clicking on a link
+  const mobileLinks = mobileMenu?.querySelectorAll("a");
+  mobileLinks?.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu?.classList.add("hidden");
+      menuIcon?.classList.remove("hidden");
+      closeIcon?.classList.add("hidden");
+    });
+  });
+</script>

@@ -1,0 +1,48 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-primary text-white pt-16 pb-8">
+  <div class="container mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-8 mb-12">
+      <div>
+        <h3 class="text-2xl font-bold font-serif mb-4">CEPRIJA</h3>
+        <p class="text-gray-300 mb-4">
+          Formando profesionales con excelencia académica y compromiso social.
+        </p>
+      </div>
+      
+      <div>
+        <h4 class="text-lg font-bold mb-4 text-secondary">Enlaces Rápidos</h4>
+        <ul class="space-y-2">
+          <li><a href="/nosotros" class="text-gray-300 hover:text-white transition-colors">Nosotros</a></li>
+          <li><a href="/oferta-academica" class="text-gray-300 hover:text-white transition-colors">Oferta Académica</a></li>
+          <li><a href="/admisiones" class="text-gray-300 hover:text-white transition-colors">Admisiones</a></li>
+          <li><a href="/blog" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-bold mb-4 text-secondary">Oferta Académica</h4>
+        <ul class="space-y-2">
+          <li><a href="/oferta-academica/licenciaturas" class="text-gray-300 hover:text-white transition-colors">Licenciaturas</a></li>
+          <li><a href="/oferta-academica/maestrias" class="text-gray-300 hover:text-white transition-colors">Maestrías</a></li>
+          <li><a href="/oferta-academica/doctorados" class="text-gray-300 hover:text-white transition-colors">Doctorados</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-bold mb-4 text-secondary">Contacto</h4>
+        <ul class="space-y-2 text-gray-300">
+          <li>Calle Ejemplo 123, Ciudad</li>
+          <li>contacto@ceprija.edu.mx</li>
+          <li>+52 55 1234 5678</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="border-t border-blue-800 pt-8 text-center text-gray-400 text-sm">
+      <p>&copy; {currentYear} Centro Educativo Primera de Enero. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
