@@ -19,11 +19,11 @@ export const POST: APIRoute = async ({ request }) => {
         }
 
         // Create transporter
-        const host = import.meta.env.SMTP_HOST || 'smtp.example.com';
-        const port = parseInt(import.meta.env.SMTP_PORT || '587');
+        const host = import.meta.env.SMTP_HOST;
+        const port = parseInt(import.meta.env.SMTP_PORT);
         const secure = import.meta.env.SMTP_SECURE === 'true';
-        const user = import.meta.env.SMTP_USER || 'user';
-        const pass = import.meta.env.SMTP_PASS || 'pass';
+        const user = import.meta.env.SMTP_USER;
+        const pass = import.meta.env.SMTP_PASS;
 
         console.log(`[Email Config] Host: ${host}, Port: ${port}, Secure: ${secure}`);
 
