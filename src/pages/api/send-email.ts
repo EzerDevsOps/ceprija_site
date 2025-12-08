@@ -46,8 +46,8 @@ export const POST: APIRoute = async ({ request }) => {
         });
 
         const mailOptions = {
-            from: `"CEPRIJA Web" <${import.meta.env.SMTP_FROM || 'noreply@ceprija.edu.mx'}>`,
-            to: (import.meta.env.CONTACT_EMAIL || 'contacto@ceprija.edu.mx').split(',').map((email: string) => email.trim()),
+            from: `"CEPRIJA Web" <${import.meta.env.SMTP_FROM}>`,
+            to: (import.meta.env.CONTACT_EMAIL).split(',').map((email: string) => email.trim()),
             subject: `Nueva Solicitud de Información: ${program}`,
             text: `
         Nueva solicitud de información desde el sitio web.
