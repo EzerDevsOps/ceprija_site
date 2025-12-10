@@ -1,0 +1,119 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { faculty } from "../../data/faculty.js";
+
+export function getStaticPaths() {
+    return faculty.map((member) => ({
+        params: { id: member.id },
+        props: { member },
+    }));
+}
+
+const { member } = Astro.props;
+---
+
+<Layout title={`${member.name} | Docentes CEPRIJA`}>
+    <main class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div
+                class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden"
+            >
+                <div class="md:flex">
+                    <div class="md:w-1/3 h-96 md:h-auto relative">
+                        <img
+                            src={member.image}
+                            alt={member.name}
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+                    <div class="md:w-2/3 p-8 md:p-12">
+                        <h1
+                            class="text-3xl md:text-4xl font-bold text-primary mb-2 font-serif"
+                        >
+                            {member.name}
+                        </h1>
+                        <p class="text-xl text-secondary font-medium mb-6">
+                            {member.degree}
+                        </p>
+
+                        <div class="mb-8">
+                            <h2
+                                class="text-lg font-bold text-gray-800 mb-3 border-b pb-2"
+                            >
+                                Biografía
+                            </h2>
+                            <p class="text-gray-600 leading-relaxed text-lg">
+                                {member.fullBio || member.bio}
+                            </p>
+                        </div>
+
+                        {
+                            member.education && (
+                                <div>
+                                    <h2 class="text-lg font-bold text-gray-800 mb-3 border-b pb-2">
+                                        Formación Académica
+                                    </h2>
+                                    <ul class="space-y-3">
+                                        {member.education.map((item) => (
+                                            <li class="flex items-start gap-3 text-gray-600">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="h-6 w-6 text-secondary flex-shrink-0"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M12 14l9-5-9-5-9 5 9 5z"
+                                                    />
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+                                                    />
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M12 14l9-5-9-5-9 5 9 5z"
+                                                    />
+                                                </svg>
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )
+                        }
+
+                        <div class="mt-10 pt-6 border-t border-gray-100">
+                            <a
+                                href="/docentes"
+                                class="inline-flex items-center text-primary font-medium hover:text-secondary transition-colors"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5 mr-2"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                                </svg>
+                                Volver a Docentes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</Layout>

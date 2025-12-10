@@ -1,0 +1,24 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Faculty from "../../components/Faculty.astro";
+---
+
+<Layout title="Claustro Docente | CEPRIJA">
+    <main>
+        <div class="bg-primary py-20 text-center text-white">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-5xl font-bold font-serif mb-4">
+                    Nuestro Claustro Docente
+                </h1>
+                <p class="text-xl opacity-90 max-w-2xl mx-auto">
+                    Conoce a los expertos que guiarán tu formación profesional
+                    con excelencia y ética.
+                </p>
+            </div>
+        </div>
+
+        <div class="bg-gray-50 min-h-screen">
+            <Faculty showTitle={false} />
+        </div>
+    </main>
+</Layout>

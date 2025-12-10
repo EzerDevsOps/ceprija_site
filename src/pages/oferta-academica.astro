@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { programs } from '../data/programs.js';
 import Accreditations from '../components/Accreditations.astro';
+import Button from "../components/Button.astro";
 ---
 
 <Layout title="Oferta Académica | CEPRIJA">
@@ -80,9 +81,14 @@ import Accreditations from '../components/Accreditations.astro';
       <!-- CTA Section -->
       <div class="mt-20 text-center">
         <p class="text-gray-600 mb-6">¿No encuentras lo que buscas? Contáctanos para asesoría personalizada.</p>
-        <a href="/contacto" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-900 transition-colors shadow-lg hover:shadow-xl">
+        <Button
+            href="/contacto"
+            id="submit-btn"
+            variant="primary"
+            class="inline-block bg-primary text-white font-bold py-3 px-8 hover:bg-blue-900 transition-colors shadow-lg hover:shadow-xl"
+        >
           Hablar con un Asesor
-        </a>
+        </Button>
       </div>
 
     </div>

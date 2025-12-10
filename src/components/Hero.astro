@@ -1,4 +1,6 @@
 ---
+import Button from './Button.astro';
+
 const slides = [
   {
     image: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=2070&auto=format&fit=crop",
@@ -43,14 +45,14 @@ const slides = [
           <p class="text-xl md:text-2xl mb-8 text-gray-200 font-light">
             {slide.subtitle}
           </p>
-          <div class="flex gap-4">
-            <a href={slide.link} class="bg-secondary text-primary font-bold py-4 px-8 rounded-lg hover:bg-yellow-500 transition-all transform hover:scale-105 shadow-lg">
-              {slide.cta}
-            </a>
-            <a href="/contacto" class="border-2 border-white text-white font-bold py-4 px-8 rounded-lg hover:bg-white hover:text-primary transition-all">
-              Contáctanos
-            </a>
-          </div>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <Button href={slide.link} variant="secondary" size="lg" class="w-full sm:w-auto transform hover:scale-105 shadow-lg">
+                {slide.cta}
+              </Button>
+              <Button href="/contacto" variant="outline" size="lg" class="w-full sm:w-auto border-white text-white hover:bg-white hover:text-primary hover:border-white">
+                Contáctanos
+              </Button>
+            </div>
         </div>
       </div>
     </div>

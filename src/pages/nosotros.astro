@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Features from "../components/Features.astro";
+import { values } from "../data/values.js";
 ---
 
 <Layout title="Nosotros | CEPRIJA">
@@ -38,9 +40,10 @@ import Layout from "../layouts/Layout.astro";
       >
         <h2 class="text-2xl font-bold text-primary mb-4">Misión</h2>
         <p class="text-gray-600">
-          Formar profesionales íntegros y competentes, con un alto sentido de
-          responsabilidad social, a través de modelos educativos innovadores y
-          flexibles.
+          Contribuir a la educación en México formando profesionales con
+          técnica, ética y criterio, mediante programas impartidos por
+          especialistas en activo, con un enfoque práctico y orientado a la
+          acción en los sectores público y privado.
         </p>
       </div>
       <div
@@ -48,11 +51,15 @@ import Layout from "../layouts/Layout.astro";
       >
         <h2 class="text-2xl font-bold text-primary mb-4">Visión</h2>
         <p class="text-gray-600">
-          Ser reconocidos como una institución líder en educación superior,
-          referente por su calidad académica y su contribución al desarrollo de
-          la sociedad.
+          Consolidar una comunidad de referencia en educación superior,
+          reconocida por un modelo formativo integral y ético, con programas
+          relevantes que fortalezcan el desarrollo profesional y personal e
+          impulsen un impacto positivo en el entorno desde la práctica.
         </p>
       </div>
+    </div>
+    <div class="mt-16">
+      <Features title="Nuestros Valores" features={values} />
     </div>
   </main>
 </Layout>

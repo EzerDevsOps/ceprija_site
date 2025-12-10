@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
+import Faculty from "../components/Faculty.astro";
 import Features from "../components/Features.astro";
 import Testimonials from "../components/Testimonials.astro";
 ---
@@ -8,8 +9,8 @@ import Testimonials from "../components/Testimonials.astro";
 <Layout title="CEPRIJA | Educación Superior">
 	<main>
 		<Hero />
-
 		<Features />
+		<Faculty limit={4} />
 		<Testimonials />
 	</main>
 </Layout>
