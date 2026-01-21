@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import { programs } from "../../data/programs.js";
 import ContactForm from "../../components/ContactForm.astro";
+import RegistrationForm from "../../components/RegistrationForm.astro";
 
 export async function getStaticPaths() {
     return programs.map((program) => ({
@@ -11,9 +12,14 @@ export async function getStaticPaths() {
 }
 
 const { program } = Astro.props;
+
+const seo = {
+    title: `${program.title} | CEPRIJA`,
+    description: program.description,
+};
 ---
 
-<Layout title={`${program.title} | CEPRIJA`}>
+<Layout seo={seo}>
     <main class="bg-gray-50 min-h-screen">
         <!-- Hero Section -->
         <section class={`${program.image} text-white py-20`}>
@@ -24,7 +30,7 @@ const { program } = Astro.props;
                     >
                         {program.level}
                     </span>
-                    <h1 class="text-5xl font-bold mb-6 font-serif">
+                    <h1 class="text-4xl font-bold mb-6 font-serif">
                         {program.title}
                     </h1>
                     <p class="text-xl text-gray-100 mb-8">
@@ -32,9 +38,56 @@ const { program } = Astro.props;
                     </p>
 
                     <div class="flex flex-wrap gap-6 text-sm">
+                        {
+                            program.rvoe && (
+                                <div class="flex items-center gap-2">
+                                    <span>RVOE: </span>
+                                    <span class="italic font-bold">
+                                        {program.rvoe}
+                                    </span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-5 w-5"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        />
+                                    </svg>
+                                </div>
+                            )
+                        }
+
+                        {
+                            program.startDate && (
+                                <div class="flex items-center gap-2">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-5 w-5"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                        />
+                                    </svg>
+                                    <span class="font-bold">
+                                        {program.startDate}
+                                    </span>
+                                </div>
+                            )
+                        }
+
                         <div class="flex items-center gap-2">
-                            <span>RVOE: </span>
-                            <span class="italic font-bold">{program.rvoe}</span>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 class="h-5 w-5"
@@ -49,8 +102,31 @@ const { program } = Astro.props;
                                     d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                                 ></path>
                             </svg>
-                            <span>Duración: {program.duration}</span>
+                            <span>{program.duration}</span>
                         </div>
+
+                        {
+                            program.schedule && (
+                                <div class="flex items-center gap-2">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-5 w-5"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        />
+                                    </svg>
+                                    <span>{program.schedule}</span>
+                                </div>
+                            )
+                        }
+
                         <div class="flex items-center gap-2">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +142,7 @@ const { program } = Astro.props;
                                     d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                                 ></path>
                             </svg>
-                            <span>Modalidad: {program.modality}</span>
+                            <span>{program.modality}</span>
                         </div>
                     </div>
                 </div>
@@ -80,108 +156,215 @@ const { program } = Astro.props;
                     <!-- Main Content -->
                     <div class="lg:col-span-2 space-y-12">
                         <!-- Plan de Estudios -->
-                        <div class="bg-white rounded-2xl shadow-sm p-8">
-                            <h2
-                                class="text-3xl font-bold text-primary mb-6 font-serif flex items-center gap-3"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-8 w-8 text-secondary"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                                    ></path>
-                                </svg>
-                                Plan de Estudios
-                            </h2>
-                            <div class="space-y-8">
-                                {
-                                    program.curriculum.map((semester) => (
-                                        <div>
-                                            <h3 class="text-xl font-bold text-primary mb-4 border-b border-gray-200 pb-2 font-serif">
-                                                {semester.period}
-                                            </h3>
-                                            <div class="grid md:grid-cols-2 gap-4">
-                                                {semester.subjects.map(
-                                                    (subject, subIndex) => (
-                                                        <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors">
-                                                            <span class="flex-shrink-0 w-6 h-6 bg-secondary text-primary rounded-full flex items-center justify-center text-xs font-bold">
-                                                                {subIndex + 1}
-                                                            </span>
-                                                            <span class="text-gray-700 font-medium">
-                                                                {subject}
-                                                            </span>
-                                                        </div>
-                                                    ),
-                                                )}
-                                            </div>
-                                        </div>
-                                    ))
-                                }
-                            </div>
-                        </div>
+                        {
+                            program.curriculum && (
+                                <div class="bg-white rounded-2xl shadow-sm p-8">
+                                    <h2 class="text-3xl font-bold text-primary mb-6 font-serif flex items-center gap-3">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-8 w-8 text-secondary"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                                            />
+                                        </svg>
+                                        Plan de Estudios
+                                    </h2>
+                                    <div class="space-y-8">
+                                        {program.curriculum.map(
+                                            (semester: {
+                                                period: unknown;
+                                                subjects: any[];
+                                            }) => (
+                                                <div>
+                                                    <h3 class="text-xl font-bold text-primary mb-4 border-b border-gray-200 pb-2 font-serif">
+                                                        {semester.period}
+                                                    </h3>
+                                                    <div class="grid md:grid-cols-2 gap-4">
+                                                        {semester.subjects.map(
+                                                            (
+                                                                subject: unknown,
+                                                                subIndex: number,
+                                                            ) => (
+                                                                <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors">
+                                                                    <span class="flex-shrink-0 w-6 h-6 bg-secondary text-primary rounded-full flex items-center justify-center text-xs font-bold">
+                                                                        {subIndex +
+                                                                            1}
+                                                                    </span>
+                                                                    <span class="text-gray-700 font-medium">
+                                                                        {
+                                                                            subject
+                                                                        }
+                                                                    </span>
+                                                                </div>
+                                                            ),
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            ),
+                                        )}
+                                    </div>
+                                </div>
+                            )
+                        }
                         <!-- Perfil del Egresado -->
-                        <div class="bg-white rounded-2xl shadow-sm p-8">
-                            <h2
-                                class="text-3xl font-bold text-primary mb-6 font-serif flex items-center gap-3"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-8 w-8 text-secondary"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                                    ></path>
-                                </svg>
-                                Perfil del Egresado
-                            </h2>
-                            <p class="text-gray-700 leading-relaxed text-lg">
-                                {program.profile}
-                            </p>
-                        </div>
+                        {
+                            program.profile && (
+                                <div class="bg-white rounded-2xl shadow-sm p-8">
+                                    <h2 class="text-3xl font-bold text-primary mb-6 font-serif flex items-center gap-3">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-8 w-8 text-secondary"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                            />
+                                        </svg>
+                                        Perfil del Egresado
+                                    </h2>
+                                    <p class="text-gray-700 leading-relaxed text-lg">
+                                        {program.profile}
+                                    </p>
+                                </div>
+                            )
+                        }
 
                         <!-- Campo Laboral -->
-                        <div class="bg-white rounded-2xl shadow-sm p-8">
-                            <h2
-                                class="text-3xl font-bold text-primary mb-6 font-serif flex items-center gap-3"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-8 w-8 text-secondary"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                                    ></path>
-                                </svg>
-                                Campo Laboral
-                            </h2>
-                            <p class="text-gray-700 leading-relaxed text-lg">
-                                {program.fieldOfWork}
-                            </p>
-                        </div>
+                        {
+                            program.fieldOfWork && (
+                                <div class="bg-white rounded-2xl shadow-sm p-8">
+                                    <h2 class="text-3xl font-bold text-primary mb-6 font-serif flex items-center gap-3">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-8 w-8 text-secondary"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                            />
+                                        </svg>
+                                        Campo Laboral
+                                    </h2>
+                                    <p class="text-gray-700 leading-relaxed text-lg">
+                                        {program.fieldOfWork}
+                                    </p>
+                                </div>
+                            )
+                        }
+
+                        {
+                            program.price && (
+                                <div class="bg-white rounded-2xl shadow-sm p-8">
+                                    <h2 class="text-3xl font-bold text-primary mb-6 font-serif flex items-center gap-3">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-8 w-8 text-secondary"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            />
+                                        </svg>
+                                        Inversión
+                                    </h2>
+                                    <div class="space-y-4">
+                                        {Object.entries(program.price).map(
+                                            ([key, value]) => (
+                                                <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                                                    <span class="text-gray-600 font-medium capitalize">
+                                                        {key}:
+                                                    </span>
+                                                    <span class="text-primary font-bold text-lg">
+                                                        {value}
+                                                    </span>
+                                                </div>
+                                            ),
+                                        )}
+                                    </div>
+                                </div>
+                            )
+                        }
+
+                        {
+                            program.includes && (
+                                <div class="bg-white rounded-2xl shadow-sm p-8">
+                                    <h2 class="text-3xl font-bold text-primary mb-6 font-serif flex items-center gap-3">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-8 w-8 text-secondary"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            />
+                                        </svg>
+                                        Incluye
+                                    </h2>
+                                    <ul class="space-y-2">
+                                        {program.includes.map(
+                                            (item: unknown) => (
+                                                <li class="flex items-center gap-2 text-gray-700">
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="h-5 w-5 text-secondary"
+                                                        viewBox="0 0 20 20"
+                                                        fill="currentColor"
+                                                    >
+                                                        <path
+                                                            fill-rule="evenodd"
+                                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                            clip-rule="evenodd"
+                                                        />
+                                                    </svg>
+                                                    {item}
+                                                </li>
+                                            ),
+                                        )}
+                                    </ul>
+                                </div>
+                            )
+                        }
                     </div>
 
-                    <!-- Sidebar -->
                     <div class="lg:col-span-1">
-                        <ContactForm programTitle={program.title} />
+                        {
+                            ["Curso", "Taller", "Diplomado"].includes(
+                                program.level,
+                            ) ? (
+                                <RegistrationForm
+                                    programTitle={program.title}
+                                />
+                            ) : (
+                                <ContactForm programTitle={program.title} />
+                            )
+                        }
                     </div>
                 </div>
             </div>

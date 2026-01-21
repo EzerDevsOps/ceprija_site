@@ -9,7 +9,7 @@ export default {
                 accent: '#E5E7EB', // Light Grey
             },
             fontFamily: {
-                sans: ['Inter', 'sans-serif'],
+                sans: ['IBM Plex Sans', 'sans-serif'],
                 serif: ['Merriweather', 'serif'],
             },
         },

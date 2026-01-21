@@ -4,13 +4,15 @@ import Hero from "../components/Hero.astro";
 import Faculty from "../components/Faculty.astro";
 import Features from "../components/Features.astro";
 import Testimonials from "../components/Testimonials.astro";
+import Location from "../components/Location.astro";
 ---
 
-<Layout title="CEPRIJA | Educación Superior">
+<Layout pageId="home">
 	<main>
 		<Hero />
 		<Features />
 		<Faculty limit={4} />
 		<Testimonials />
+		<Location />
 	</main>
 </Layout>

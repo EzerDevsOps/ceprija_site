@@ -26,7 +26,7 @@ const slides = [
 ];
 ---
 
-<div class="relative h-[600px] w-full overflow-hidden bg-gray-900" id="hero-slider">
+<div class="relative min-h-screen w-full overflow-hidden bg-gray-900" id="hero-slider">
   <!-- Slides -->
   {slides.map((slide, index) => (
     <div class={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'} slide-item`} data-index={index}>
@@ -39,7 +39,7 @@ const slides = [
       <!-- Content -->
       <div class="relative z-20 container mx-auto px-6 h-full flex items-center">
         <div class="max-w-3xl text-white animate-fade-in-up">
-          <h1 class="text-5xl md:text-6xl font-bold mb-6 font-serif leading-tight">
+          <h1 class="text-5xl md:text-7xl font-semi-bold mb-6 font-serif leading-tight">
             {slide.title}
           </h1>
           <p class="text-xl md:text-2xl mb-8 text-gray-200 font-light">
@@ -106,7 +106,7 @@ const slides = [
   const prevBtn = document.getElementById('prev-slide');
   const nextBtn = document.getElementById('next-slide');
   let currentSlide = 0;
-  let interval: number;
+  let interval: any;
 
   function showSlide(index: number) {
     if (!slides || !dots) return;

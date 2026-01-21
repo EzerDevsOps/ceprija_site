@@ -4,7 +4,7 @@ import Features from "../components/Features.astro";
 import { values } from "../data/values.js";
 ---
 
-<Layout title="Nosotros | CEPRIJA">
+<Layout pageId="about">
   <main class="container mx-auto px-6 py-12">
     <h1 class="text-4xl font-bold text-primary mb-8 font-serif">
       Sobre Nosotros
@@ -14,12 +14,14 @@ import { values } from "../data/values.js";
       <div>
         <p class="text-lg text-gray-700 mb-6">
           En CEPRIJA creemos en la educación que forma profesionales listos para
-          ejercer con técnica, ética y criterio. Somos un centro de educación
-          superior comprometido con la excelencia académica, que ofrece un
-          modelo sólido basado en el conocimiento útil y habilidades prácticas
-          con visión estratégica.
+          ejercer con técnica, ética y criterio.
+          <p class="text-lg text-gray-700 mt-6">
+            Somos un centro de educación superior comprometido con la excelencia
+            académica, que ofrece un modelo sólido basado en el conocimiento
+            útil y habilidades prácticas con visión estratégica.
+          </p>
         </p>
-        <p class="text-lg text-gray-700">
+        <p class="text-lg text-gray-700 mt-6">
           Nuestra misión es brindar herramientas académicas y prácticas que
           permitan a nuestros estudiantes destacar en el ámbito profesional,
           siempre guiados por principios éticos y humanistas.
@@ -38,23 +40,24 @@ import { values } from "../data/values.js";
       <div
         class="bg-white p-8 rounded-xl shadow-sm border-l-4 border-secondary"
       >
-        <h2 class="text-2xl font-bold text-primary mb-4">Misión</h2>
+        <h2 class="text-2xl font-bold text-primary mb-4 font-serif">Misión</h2>
         <p class="text-gray-600">
-          Contribuir a la educación en México formando profesionales con
-          técnica, ética y criterio, mediante programas impartidos por
-          especialistas en activo, con un enfoque práctico y orientado a la
-          acción en los sectores público y privado.
+          Contribuir a la educación en México formando profesionales capaces de
+          ejercer con técnica, ética y criterio, mediante programas impartidos
+          por especialistas activos, con un enfoque práctico, contextual y
+          orientado a la acción en los sectores público y privado.
         </p>
       </div>
       <div
         class="bg-white p-8 rounded-xl shadow-sm border-l-4 border-secondary"
       >
-        <h2 class="text-2xl font-bold text-primary mb-4">Visión</h2>
+        <h2 class="text-2xl font-bold text-primary mb-4 font-serif">Visión</h2>
         <p class="text-gray-600">
           Consolidar una comunidad de referencia en educación superior,
-          reconocida por un modelo formativo integral y ético, con programas
-          relevantes que fortalezcan el desarrollo profesional y personal e
-          impulsen un impacto positivo en el entorno desde la práctica.
+          reconocida por un modelo formativo integral, útil y ético, que ofrece
+          programas relevantes y de excelencia, orientados a fortalecer el
+          desarrollo profesional y personal, e impulsar la mejora del entorno
+          desde la práctica.
         </p>
       </div>
     </div>

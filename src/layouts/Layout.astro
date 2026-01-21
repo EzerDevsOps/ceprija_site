@@ -1,31 +1,112 @@
 ---
 interface Props {
-	title: string;
+	title?: string;
+	description?: string;
+	image?: string;
+	pageId?: string; // Key from seoConfig.pages (e.g., 'home', 'about')
+	seo?: {
+		// Manual override object
+		title?: string;
+		description?: string;
+		image?: string;
+	};
 }
 
-const { title } = Astro.props;
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+import AnalyticsHead from "../components/AnalyticsHead.astro";
+import AnalyticsBody from "../components/AnalyticsBody.astro";
+import { seoConfig } from "../data/seo";
+
+const {
+	title: propTitle,
+	description: propDesc,
+	image: propImage,
+	pageId,
+	seo: propSeo,
+} = Astro.props;
+
+// 1. Get Base Defaults
+const defaults = seoConfig.default;
+
+// 2. Get Page Specific Config (if pageId exists)
+// 2. Get Page Specific Config (if pageId exists)
+const pageConfig = pageId
+	? seoConfig.pages[pageId as keyof typeof seoConfig.pages]
+	: ({} as any);
+
+// 3. Merge: Manual Override > Page Config > Defaults
+const title =
+	propTitle || propSeo?.title || pageConfig?.title || defaults.title;
+const description =
+	propDesc ||
+	propSeo?.description ||
+	pageConfig?.description ||
+	defaults.description;
+const image =
+	propImage || propSeo?.image || pageConfig?.image || defaults.image;
 ---
 
 <!doctype html>
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="CEPRIJA - Centro Educativo Primera de Enero" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+
+		<!-- Primary Meta Tags -->
 		<title>{title}</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={image} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={image} />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- Brevo Conversations {literal} -->
+		<!-- <script>
+			(function (d, w, c) {
+				w.BrevoConversationsID = "69374727b23c8f954507528f";
+				w[c] =
+					w[c] ||
+					function () {
+						(w[c].q = w[c].q || []).push(arguments);
+					};
+				var s = d.createElement("script");
+				s.async = true;
+				s.src =
+					"https://conversations-widget.brevo.com/brevo-conversations.js";
+				if (d.head) d.head.appendChild(s);
+			})(document, window, "BrevoConversations");
+		</script> -->
+		<!-- /Brevo Conversations {/literal} -->
+		<AnalyticsHead />
 	</head>
-	<body class="bg-white text-gray-900 font-sans antialiased flex flex-col min-h-screen">
+	<body
+		class="bg-white text-gray-900 font-sans antialiased flex flex-col min-h-screen"
+	>
+		<AnalyticsBody />
 		<Header />
 		<div class="flex-grow">
 			<slot />
 		</div>
 		<Footer />
+		<WhatsAppButton />
 	</body>
 </html>

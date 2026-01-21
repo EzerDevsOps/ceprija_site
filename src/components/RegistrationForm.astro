@@ -5,16 +5,22 @@ interface Props {
     programTitle?: string;
 }
 
-const { programTitle = "General Inquiry" } = Astro.props;
+const { programTitle = "Curso/Taller" } = Astro.props;
 ---
 
-<div class="bg-white rounded-2xl shadow-lg p-8 sticky top-24">
-    <h3 class="text-2xl font-bold text-primary mb-6 font-serif">
-        Solicita Información
-    </h3>
+<div
+    class="bg-white rounded-2xl shadow-lg p-8 sticky top-24 border-t-4 border-secondary"
+>
+    <h3 class="text-2xl font-bold text-primary mb-2 font-serif">Inscripción</h3>
+    <p class="text-gray-600 mb-6 text-sm">
+        Reserva tu lugar para: <span class="font-bold text-primary"
+            >{programTitle}</span
+        >
+    </p>
 
-    <form id="contact-form" class="space-y-4">
+    <form id="registration-form" class="space-y-4">
         <input type="hidden" name="program" value={programTitle} />
+        <input type="hidden" name="type" value="registration" />
 
         <div>
             <label
@@ -28,7 +34,23 @@ const { programTitle = "General Inquiry" } = Astro.props;
                 name="name"
                 required
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
-                placeholder="Tu nombre"
+                placeholder="Tu nombre completo"
+            />
+        </div>
+
+        <div>
+            <label
+                for="phone"
+                class="block text-sm font-medium text-gray-700 mb-1"
+                >Teléfono / WhatsApp</label
+            >
+            <input
+                type="tel"
+                id="phone"
+                name="phone"
+                required
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
+                placeholder="55 1234 5678"
             />
         </div>
 
@@ -49,33 +71,67 @@ const { programTitle = "General Inquiry" } = Astro.props;
         </div>
 
         <div>
-            <label
-                for="phone"
-                class="block text-sm font-medium text-gray-700 mb-1"
-                >Teléfono</label
+            <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Modalidad de asistencia</label
             >
-            <input
-                type="tel"
-                id="phone"
-                name="phone"
-                required
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
-                placeholder="55 1234 5678"
-            />
+            <div class="flex gap-4">
+                <label
+                    class="flex items-center gap-2 cursor-pointer border p-3 rounded-lg w-full hover:bg-gray-50 transition-colors has-[:checked]:border-primary has-[:checked]:bg-blue-50"
+                >
+                    <input
+                        type="radio"
+                        name="modality"
+                        value="Presencial"
+                        class="text-primary focus:ring-primary"
+                        checked
+                    />
+                    <span class="text-sm font-medium text-gray-700"
+                        >Presencial</span
+                    >
+                </label>
+                <label
+                    class="flex items-center gap-2 cursor-pointer border p-3 rounded-lg w-full hover:bg-gray-50 transition-colors has-[:checked]:border-primary has-[:checked]:bg-blue-50"
+                >
+                    <input
+                        type="radio"
+                        name="modality"
+                        value="En línea"
+                        class="text-primary focus:ring-primary"
+                    />
+                    <span class="text-sm font-medium text-gray-700"
+                        >En línea</span
+                    >
+                </label>
+            </div>
         </div>
 
-        <div>
-            <label
-                for="message"
-                class="block text-sm font-medium text-gray-700 mb-1"
-                >Mensaje</label
-            >
-            <textarea
-                id="message"
-                name="message"
-                rows="3"
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
-                placeholder="¿Qué te gustaría saber?"></textarea>
+        <div class="flex items-start gap-2 pt-2">
+            <div class="flex items-center h-5">
+                <input
+                    id="privacy"
+                    name="privacy"
+                    type="checkbox"
+                    required
+                    class="focus:ring-primary h-4 w-4 text-primary border-gray-300 rounded cursor-pointer"
+                />
+            </div>
+            <div class="text-sm">
+                <label
+                    for="privacy"
+                    class="font-medium text-gray-700 cursor-pointer"
+                >
+                    He leído y acepto el aviso de privacidad
+                </label>
+                <p class="text-gray-500 text-xs mt-1">
+                    <a
+                        href="/aviso-de-privacidad"
+                        target="_blank"
+                        class="text-secondary hover:text-primary underline decoration-dotted"
+                    >
+                        Leer avisos de privacidad
+                    </a>
+                </p>
+            </div>
         </div>
 
         <div id="form-status" class="hidden mb-4 p-3 rounded-lg text-sm"></div>
@@ -83,12 +139,12 @@ const { programTitle = "General Inquiry" } = Astro.props;
         <Button
             type="submit"
             id="submit-btn"
-            variant="secondary"
-            class="w-full flex justify-center items-center gap-2"
+            variant="primary"
+            class="w-full flex justify-center items-center gap-2 mt-4"
         >
-            <span>Enviar Solicitud</span>
+            <span>Inscribirme Ahora</span>
             <svg
-                class="animate-spin h-5 w-5 text-primary hidden"
+                class="animate-spin h-5 w-5 text-white hidden"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -109,36 +165,12 @@ const { programTitle = "General Inquiry" } = Astro.props;
             </svg>
         </Button>
     </form>
-
-    <div class="mt-8 pt-8 border-t border-gray-200">
-        <a
-            href="/oferta-academica"
-            class="inline-flex items-center gap-3 text-gray-600 hover:text-primary font-medium transition-colors group"
-        >
-            <div
-                class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow"
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 transform group-hover:-translate-x-1 transition-transform"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15 19l-7-7 7-7"></path>
-                </svg>
-            </div>
-            <span>Ver todos los programas</span>
-        </a>
-    </div>
 </div>
 
 <script>
-    const form = document.getElementById("contact-form") as HTMLFormElement;
+    const form = document.getElementById(
+        "registration-form",
+    ) as HTMLFormElement;
     const statusDiv = document.getElementById("form-status");
     const submitBtn = document.getElementById(
         "submit-btn",
@@ -160,7 +192,7 @@ const { programTitle = "General Inquiry" } = Astro.props;
             if (submitBtn && spinner && btnText) {
                 submitBtn.disabled = true;
                 spinner.classList.remove("hidden");
-                btnText.textContent = "Enviando...";
+                btnText.textContent = "Procesando...";
             }
 
             const formData = new FormData(form);
@@ -181,7 +213,7 @@ const { programTitle = "General Inquiry" } = Astro.props;
                     // Success
                     if (statusDiv) {
                         statusDiv.textContent =
-                            "¡Gracias! Tu solicitud ha sido enviada correctamente. Nos pondremos en contacto contigo pronto.";
+                            "¡Inscripción recibida! Te hemos enviado un correo con los detalles de pago y confirmación.";
                         statusDiv.classList.remove("hidden");
                         statusDiv.classList.add(
                             "bg-green-100",
@@ -201,7 +233,7 @@ const { programTitle = "General Inquiry" } = Astro.props;
                 // Network or other error
                 if (statusDiv) {
                     statusDiv.textContent =
-                        "Hubo un error al enviar tu solicitud. Por favor intenta nuevamente o contáctanos por teléfono.";
+                        "Hubo un error. Por favor contáctanos por WhatsApp para completar tu inscripción.";
                     statusDiv.classList.remove("hidden");
                     statusDiv.classList.add(
                         "bg-red-100",
@@ -216,7 +248,7 @@ const { programTitle = "General Inquiry" } = Astro.props;
                 if (submitBtn && spinner && btnText) {
                     submitBtn.disabled = false;
                     spinner.classList.add("hidden");
-                    btnText.textContent = "Enviar Solicitud";
+                    btnText.textContent = "Inscribirme Ahora";
                 }
             }
         });
